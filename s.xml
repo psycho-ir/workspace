@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0" class="java.beans.XMLDecoder">
+ <object class="Test">
+  <void property="lastName">
+   <string>sa</string>
+  </void>
+  <void property="name">
+   <string>so</string>
+  </void>
+ </object>
+</java>
