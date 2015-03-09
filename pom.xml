@@ -15,6 +15,7 @@
         <module>practice</module>
         <module>postgres</module>
         <module>guice-test</module>
+        <module>spring-redis-test</module>
     </modules>
 
 
