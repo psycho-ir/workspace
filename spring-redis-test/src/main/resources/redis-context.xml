@@ -10,10 +10,10 @@
           class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
         <property name="usePool" value="true"/>
     </bean>
-
     <!-- redis template definition -->
-    <bean id="redisTemplate"  class="org.springframework.data.redis.core.StringRedisTemplate">
+    <bean id="redisTemplate"  class="com.sarabadani.workspace.spring.redis.pubsub.MessageRedisTemplate">
         <property name="connectionFactory" ref="jedisConnFactory"/>
+        <property name="defaultSerializer" ref="serializer" />
     </bean>
     <bean id="latch" class="java.util.concurrent.CountDownLatch">
 
@@ -26,10 +26,9 @@
 
     <bean id="adapter" class="org.springframework.data.redis.listener.adapter.MessageListenerAdapter">
         <constructor-arg name="delegate" ref="receiver"></constructor-arg>
-        <constructor-arg name="defaultListenerMethod" value="receiveMessage"></constructor-arg>
+
     </bean>
     <bean id="topic" class="org.springframework.data.redis.listener.PatternTopic">
-
         <constructor-arg value="chat"/>
     </bean>
 
@@ -45,5 +44,9 @@
     </bean>
 
     <bean id="example" class="com.sarabadani.workspace.spring.redis.Example"></bean>
+    <bean id="serializer" class="org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer">
+
+        <constructor-arg type="java.lang.Class" value="com.sarabadani.workspace.spring.redis.pubsub.Message"/>
+    </bean>
 
 </beans>

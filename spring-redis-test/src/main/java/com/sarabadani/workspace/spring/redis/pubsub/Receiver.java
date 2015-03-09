@@ -9,17 +9,18 @@ import java.util.concurrent.CountDownLatch;
 /**
  * Created by soroosh on 3/9/15.
  */
-public class Receiver {
+public class Receiver extends BaseReceiver<Message> {
     private static final Logger logger = LoggerFactory.getLogger(Receiver.class);
     private final CountDownLatch latch;
 
     @Autowired
     public Receiver(CountDownLatch latch) {
+        super(Message.class);
         this.latch = latch;
     }
 
-    public void receiveMessage(String msg) {
-        System.out.println("Received <-- " + msg + " -->");
-        latch.countDown();
+    @Override
+    public void onMessage(Message msg) {
+        System.out.println(msg);
     }
 }

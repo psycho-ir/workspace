@@ -2,6 +2,7 @@ package com.sarabadani.workspace.spring.redis.pubsub;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
 import java.util.concurrent.CountDownLatch;
@@ -15,11 +16,11 @@ public class Program {
 
         ApplicationContext ctx = new ClassPathXmlApplicationContext("redis-context.xml");
 
-        StringRedisTemplate template = ctx.getBean(StringRedisTemplate.class);
+        RedisTemplate template = ctx.getBean(RedisTemplate.class);
         CountDownLatch latch = ctx.getBean(CountDownLatch.class);
 
         System.out.println("Sending message...");
-        template.convertAndSend("chat", "Hello from Redis!");
+        template.convertAndSend("chat", new Message("sos","ssssso"));
 
         latch.await();
         System.exit(0);

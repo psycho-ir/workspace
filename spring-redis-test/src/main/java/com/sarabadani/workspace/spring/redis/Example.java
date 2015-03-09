@@ -1,5 +1,6 @@
 package com.sarabadani.workspace.spring.redis;
 
+import com.sarabadani.workspace.spring.redis.pubsub.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -14,16 +15,16 @@ public class Example {
 
     // inject the actual template
     @Autowired
-    private RedisTemplate<String, String> template;
+    private RedisTemplate<String, Message> template;
 
     // inject the template as ListOperations
     // can also inject as Value, Set, ZSet, and HashOperations
-    @Resource(name="redisTemplate")
+    @Resource(name = "redisTemplate")
     private ListOperations<String, String> listOps;
 
     public void addLink(String userId, URL url) {
         listOps.leftPush(userId, url.toExternalForm());
         // or use template directly
-        template.boundListOps(userId).leftPush(url.toExternalForm());
+        template.boundListOps(userId).leftPush(new Message("sss", "ssss"));
     }
 }
