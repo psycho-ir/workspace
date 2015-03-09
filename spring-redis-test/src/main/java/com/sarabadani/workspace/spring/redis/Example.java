@@ -22,8 +22,8 @@ public class Example {
     private ListOperations<String, String> listOps;
 
     public void addLink(String userId, URL url) {
-//        listOps.leftPush(userId, url.toExternalForm());
+        listOps.leftPush(userId, url.toExternalForm());
         // or use template directly
-//        template.boundListOps(userId).leftPush(url.toExternalForm());
+        template.boundListOps(userId).leftPush(url.toExternalForm());
     }
 }
