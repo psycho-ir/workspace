@@ -22,6 +22,7 @@ public class Program {
 
         InputStream inputStream = new FileInputStream("/home/soroosh/temp/simple.txt");
         inputStream = new BufferedInputStream(inputStream);
+        String a = "This is a test";
         int readByte;
         int count = 0;
         while ((readByte = inputStream.read()) != -1) {
